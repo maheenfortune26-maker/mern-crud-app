@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api';
 
 function CreateUser() {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ function CreateUser() {
 
     setLoading(true);
     try {
-      await axios.post('/api/users', {
+      await API.post('/api/users', {
         name: form.name.trim(),
         email: form.email.trim(),
         age: Number(form.age),

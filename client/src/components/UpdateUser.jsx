@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api';
 
 function UpdateUser() {
   const { id } = useParams();
@@ -16,7 +16,7 @@ function UpdateUser() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`/api/users/${id}`);
+        const res = await API.get(`/api/users/${id}`);
         const { name, email, age } = res.data;
         setForm({ name, email, age: String(age) });
       } catch {
@@ -53,7 +53,7 @@ function UpdateUser() {
 
     setSaving(true);
     try {
-      await axios.put(`/api/users/${id}`, {
+      await API.put(`/api/users/${id}`, {
         name: form.name.trim(),
         email: form.email.trim(),
         age: Number(form.age),

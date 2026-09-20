@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import API from '../api';
 
 const AVATAR_COLORS = ['#63d2ff','#a78bfa','#34d399','#fbbf24','#f87171','#f472b6'];
 
@@ -26,7 +26,7 @@ function UserList() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('/api/users');
+      const res = await API.get('/api/users');
       setUsers(res.data);
       setError('');
     } catch (err) {
@@ -42,7 +42,7 @@ function UserList() {
   const handleDelete = async (id, name) => {
     if (!window.confirm(`Delete "${name}"? This cannot be undone.`)) return;
     try {
-      await axios.delete(`/api/users/${id}`);
+      await API.delete(`/api/users/${id}`);
       setUsers(prev => prev.filter(u => u._id !== id));
       showToast('🗑️', `${name} deleted`);
     } catch (err) {
