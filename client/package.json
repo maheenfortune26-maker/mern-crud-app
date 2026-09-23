@@ -4,7 +4,7 @@
   "description": "MERN CRUD Frontend - React + Vite",
   "type": "module",
   "scripts": {
-    "build": "npx vite build",
+    "build": "vite build",
     "dev": "vite",
     "preview": "vite preview"
   },
